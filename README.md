@@ -123,12 +123,13 @@ MIT License
 
 ---
 
-## 👤 Author
+## 👤 Author  
 
-**Christopher Mena**
-AI/ML Engineer
-GitHub: https://github.com/ChrisDevAI
-Website: https://ChrisAI.dev
-LinkedIn: https://linkedin.com/in/ChrisDevAI
+**Christopher Mena**  
+AI/ML Engineer  
+GitHub: https://github.com/ChrisDevAI  
+Website: https://ChrisAI.dev  
+LinkedIn: https://linkedin.com/in/ChrisDevAI  
+
 
 
