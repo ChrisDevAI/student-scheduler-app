@@ -1,15 +1,14 @@
 import { useState, useRef, useEffect } from "react";
 
-export default function ChatPanel({ messages = [], onSendMessage }) {
+export default function ChatPanel({ messages = [], onSendMessage, assistantTyping }) {
   const [input, setInput] = useState("");
   const scrollRef = useRef(null);
 
-  // Auto-scroll on new messages
   useEffect(() => {
     if (scrollRef.current) {
       scrollRef.current.scrollTop = scrollRef.current.scrollHeight;
     }
-  }, [messages]);
+  }, [messages, assistantTyping]);
 
   function handleSend() {
     if (!input.trim()) return;
@@ -23,11 +22,10 @@ export default function ChatPanel({ messages = [], onSendMessage }) {
       
       <div className="bg-red-800 text-white rounded-xl px-4 py-3">
         <h2 className="text-xl font-semibold mb-4 text-white">
-        Chat with Assistant
+          Chat with Assistant
         </h2>
-    </div>  
+      </div>  
 
-      {/* Chat Window */}
       <div
         ref={scrollRef}
         className="h-80 overflow-y-auto border border-gray-200 rounded-lg p-4 bg-gray-50 space-y-4"
@@ -50,9 +48,21 @@ export default function ChatPanel({ messages = [], onSendMessage }) {
             </div>
           </div>
         ))}
+
+        {assistantTyping && (
+          <div className="flex justify-start">
+            <div className="bg-gray-200 text-black px-4 py-2 rounded-lg max-w-xs flex items-center gap-2">
+              <span className="font-medium">Assistant is typing</span>
+              <span className="typing-dots flex gap-1">
+                <span className="dot"></span>
+                <span className="dot"></span>
+                <span className="dot"></span>
+              </span>
+            </div>
+          </div>
+        )}
       </div>
 
-      {/* Input Box */}
       <div className="flex items-center gap-3 mt-4">
         <input
           className="flex-1 border border-gray-300 p-3 rounded-lg"
@@ -69,6 +79,36 @@ export default function ChatPanel({ messages = [], onSendMessage }) {
           Send
         </button>
       </div>
+
+      <style>
+        {`
+          .dot {
+            width: 6px;
+            height: 6px;
+            background-color: black;
+            border-radius: 50%;
+            display: inline-block;
+            opacity: 0.3;
+            animation: blink 1.4s infinite both;
+          }
+
+          .dot:nth-child(1) {
+            animation-delay: 0s;
+          }
+          .dot:nth-child(2) {
+            animation-delay: 0.2s;
+          }
+          .dot:nth-child(3) {
+            animation-delay: 0.4s;
+          }
+
+          @keyframes blink {
+            0% { opacity: 0.3; }
+            20% { opacity: 1; }
+            100% { opacity: 0.3; }
+          }
+        `}
+      </style>
 
     </div>
   );

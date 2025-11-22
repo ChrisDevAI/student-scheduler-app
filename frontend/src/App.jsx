@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect } from "react"; 
 import UploadPanel from "./components/UploadPanel";
 import CourseSelector from "./components/CourseSelector";
 import ChatPanel from "./components/ChatPanel";
@@ -10,10 +10,19 @@ export default function App() {
   const [selectedCourses, setSelectedCourses] = useState([]);
   const [messages, setMessages] = useState([]);
 
+  const [processingCourses, setProcessingCourses] = useState(false);
+  const [assistantTyping, setAssistantTyping] = useState(false);
+
+  function addAssistantMessage(text) {
+    setMessages(prev => [...prev, { sender: "assistant", text }]);
+  }
+
   useEffect(() => {
     if (!ocrText) return;
 
     async function extract() {
+      setProcessingCourses(true);
+
       try {
         const res = await fetch("http://localhost:8000/extract-courses", {
           method: "POST",
@@ -26,6 +35,8 @@ export default function App() {
       } catch (err) {
         console.error("Extraction failed:", err);
       }
+
+      setProcessingCourses(false);
     }
 
     extract();
@@ -35,6 +46,8 @@ export default function App() {
     if (!userMessage.trim()) return;
 
     setMessages(prev => [...prev, { sender: "user", text: userMessage }]);
+
+    setAssistantTyping(true);
 
     try {
       const res = await fetch("http://localhost:8000/chat", {
@@ -47,17 +60,19 @@ export default function App() {
       });
 
       const data = await res.json();
+
+      setAssistantTyping(false);
+
       setMessages(prev => [...prev, { sender: "assistant", text: data.reply }]);
     } catch (err) {
       console.error("Chat error:", err);
+      setAssistantTyping(false);
     }
   }
 
   return (
     <div className="min-h-screen bg-gray-100 flex flex-col">
 
-
-      {/* FULL-WIDTH RED HEADER */}
       <div className="w-full bg-red-800 py-6 flex justify-center">
         <div className="flex items-center gap-4">
           <img src={campusLogo} alt="Campus" className="w-12 h-12" />
@@ -66,38 +81,40 @@ export default function App() {
           </h1>
         </div>
       </div>
-      
 
-      {/* TOP ROW: 40% Upload, 60% Select */}
       <div className="w-full mt-6 flex gap-8 px-4">
 
-
         <div className="flex-none w-[360px]">
-
           <UploadPanel onOCRComplete={setOcrText} />
         </div>
 
         <div className="flex-grow">
-
           <CourseSelector
             courses={courseList}
-            onCoursesSelected={setSelectedCourses}
+            processing={processingCourses}
+            onCoursesSelected={(selected) => {
+              setSelectedCourses(selected);
+
+              if (selected.length > 0) {
+                const formatted = selected.join(", ");
+                addAssistantMessage(
+                  `I’ve received your selected courses: ${formatted}.\nLet me know your scheduling preferences.`
+                );
+              }
+            }}
           />
         </div>
 
       </div>
 
-      {/* CHAT PANEL BELOW */}
       <div className="w-full mt-8 px-4">
-
         <ChatPanel
           messages={messages}
           onSendMessage={handleSendMessage}
+          assistantTyping={assistantTyping}
         />
       </div>
 
-
-      
     </div>
   );
 }

@@ -1,9 +1,8 @@
 import { useState } from "react";
 
-export default function CourseSelector({ courses = [], onCoursesSelected }) {
+export default function CourseSelector({ courses = [], onCoursesSelected, processing }) {
   const [selected, setSelected] = useState([]);
 
-  // Remove duplicates
   const uniqueCourses = [...new Set(courses)];
 
   function toggleCourse(code) {
@@ -19,8 +18,8 @@ export default function CourseSelector({ courses = [], onCoursesSelected }) {
     setSelected(updated);
   }
 
-  // Button pushes selected list upward
   function sendToApp() {
+    if (selected.length === 0) return;
     onCoursesSelected(selected);
   }
 
@@ -34,7 +33,10 @@ export default function CourseSelector({ courses = [], onCoursesSelected }) {
       </div>
 
       <div className="p-6 max-h-80 overflow-y-auto">
-        {uniqueCourses.length === 0 ? (
+
+        {processing ? (
+          <p className="text-gray-600 font-medium">Processing…</p>
+        ) : uniqueCourses.length === 0 ? (
           <p className="text-gray-600">
             Courses will appear here after uploading your course image.
           </p>
@@ -56,9 +58,9 @@ export default function CourseSelector({ courses = [], onCoursesSelected }) {
             ))}
           </div>
         )}
+
       </div>
 
-      {/* RESTORED BUTTON */}
       <div className="p-4 border-t bg-gray-50">
         <button
           onClick={sendToApp}
@@ -67,6 +69,7 @@ export default function CourseSelector({ courses = [], onCoursesSelected }) {
           Confirm Selected Courses
         </button>
       </div>
+
     </div>
   );
 }
