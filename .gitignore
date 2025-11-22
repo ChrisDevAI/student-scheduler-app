@@ -37,7 +37,7 @@ __pycache__/
 # Virtual environments
 .venv/
 venv/
-env/
+
 
 # Logs
 *.log
@@ -50,9 +50,9 @@ env/
 #   FASTAPI / PROJECT FILES
 ##############################
 
-# Environment files (very important)
+# Environment files
 .env
-.env.*
+
 
 # Local instance, SQLite, temp DBs
 instance/
@@ -60,7 +60,7 @@ instance/
 *.sqlite3
 *.db
 
-# Auto-generated image preview temp files (if any)
+# Auto-generated image preview temp files
 *.png~
 *.tmp
 
