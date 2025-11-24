@@ -81,7 +81,10 @@ frontend/public/test-image.jpg
 - Built-in chat window  
 - Assistant typing animation  
 - CSV-based section matching  
-- Local backend required for full functionality  
+- Local backend required for full functionality
+ 
+[⬆️ Back to Overview](#overview)
+
 
 ---
 
@@ -97,6 +100,8 @@ frontend/public/test-image.jpg
 - FastAPI  
 - Tesseract OCR  
 - OpenAI gpt-4o-mini  
+
+[⬆️ Back to Overview](#overview)
 
 ---
 
@@ -114,10 +119,15 @@ frontend/public/test-image.jpg
 ### Story 4 — Pre-Final UI  
 ![Pre-Final UI](screenshots/story4.jpg)
 
+
+[⬆️ Back to Overview](#overview)
+
 ---
 
 ## License
 MIT License
+
+[⬆️ Back to Overview](#overview)
 
 ---
 
@@ -128,6 +138,7 @@ AI/ML Engineer
 GitHub: https://github.com/ChrisDevAI  
 Website: https://ChrisAI.dev  
 LinkedIn: https://linkedin.com/in/ChrisDevAI
+
 
 
 
