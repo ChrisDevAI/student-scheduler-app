@@ -1,11 +1,11 @@
-# Student Schedule Planner
+# Student Schedule Planner   (MVP Release)
 
 ![Hero Screenshot](screenshots/hero.jpg)
 
 An AI-powered system that converts a photo of your course list into a personalized class schedule using computer vision, AI, and database section matching.
 
 
-## 🔴 Live Demo (Frontend Only)
+## 🔴 Live Demo (Frontend Only)  - MVP Release
 https://student-schedule-planner-75ce2.web.app/
 
 > Backend functionality requires running locally.
@@ -136,6 +136,7 @@ AI/ML Engineer
 GitHub: https://github.com/ChrisDevAI  
 Website: https://ChrisAI.dev  
 LinkedIn: https://linkedin.com/in/ChrisDevAI
+
 
 
 
