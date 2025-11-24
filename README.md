@@ -1,83 +1,33 @@
-# 🏫 Student Schedule Planner
+# Student Schedule Planner
 
 ![Hero Screenshot](screenshots/hero.jpg)
 
-An AI-powered schedule-building system combining computer vision and an LLM-based assistant into a clean, modern interface that transforms an image of your course list into a personalized class schedule.
-
-This MVP demonstrates **full-stack engineering**, **OCR text extraction**, **LLM-driven parsing**, **CSV-based schedule matching**, and a **conversational planning assistant** — all presented through a custom-built React interface.
-
-### 🔴 Live FRONTEND ONLY Demo  
-Live FRONTEND ONLY Demo : https://student-schedule-planner-75ce2.web.app/   
-(Backend functionality requires running locally.)
-
----
+An AI-powered system that converts a photo of your course list into a personalized class schedule using computer vision, AI, and database section matching.
 
 
-## ✨ Features
+## 🔴 Live Demo (Frontend Only)
+https://student-schedule-planner-75ce2.web.app/
 
-### 📷 Image Upload + OCR  
-- Upload JPG/PNG course list images  
-- FastAPI backend receives file bytes  
-- Tesseract OCR processes the image  
-- Modular OCR implementation (`ocr.py`)
-
-### 🤖 LLM Course Extraction  
-- gpt-4o-mini parses OCR text  
-- Returns valid course codes  
-- Removes duplicates  
-
-### 🧩 Course Selection  
-- Choose up to 5 classes  
-- Responsive Tailwind UI  
-- “Processing…” state  
-- Auto-confirmation message sent to chat  
-
-### 💬 AI Chat Assistant  
-- React chat window  
-- Assistant typing animation  
-- CSV-based section matching  
-
+> Backend functionality requires running locally.
 
 ---
 
-## 🏗️ System Architecture
+## Installation (Quick Start)
 
+Python version: 3.10.x
+
+Clone the repo:
+
+```bash
+git clone https://github.com/ChrisDevAI/student-schedule-planner.git
+cd student-schedule-planner
 ```
-Frontend (React) -> FastAPI Backend -> OCR + LLM + CSV Matching
-```
-
----
-
-## 🛠️ Tech Stack
-
-### Frontend
-- React  
-- Vite  
-- TailwindCSS  
-
-### Backend
-- Python  
-- FastAPI  
-- Tesseract OCR  
-- OpenAI gpt-4o-mini  
-
----
-
-
-## 🚀 Running the System Locally
-
-**Python Version:** 3.10.x
-
-
-### Test Image
-A sample course-list image is included at `frontend/public/test-image.jpg` for quick testing.
-
 
 ### Backend
 
 ```bash
 cd backend
-python -m venv .venv
+py 3.10 -m venv .venv
 .venv\Scripts\activate
 pip install -r requirements.txt
 uvicorn main:app --reload
@@ -91,9 +41,66 @@ npm install
 npm run dev
 ```
 
+A sample test image is located at:
+
+```
+frontend/public/test-image.jpg
+```
+
 ---
 
-# 🛤️ Development Journey
+## Overview
+- [Features](#features)
+- [Tech Stack](#tech-stack)
+- [Development Journey](#development-journey)
+- [License](#license)
+- [Author](#author)
+
+---
+
+## Features
+
+### Image Upload + OCR
+- Upload JPG/PNG course list images  
+- FastAPI backend receives file bytes  
+- Tesseract OCR processes text (`ocr.py`)  
+- Clean, modular OCR pipeline  
+
+### LLM Assistant
+- gpt-4o-mini  
+- Validates course codes  
+- Deduplicates and normalizes results  
+
+### Course Selection UI
+- Select up to 5 courses  
+- Responsive Tailwind interface  
+- Loading + confirmation states  
+- Clean React component structure  
+
+### AI Chat Assistant
+- Built-in chat window  
+- Assistant typing animation  
+- CSV-based section matching  
+- Local backend required for full functionality  
+
+---
+
+## Tech Stack
+
+### Frontend  
+- React  
+- Vite  
+- TailwindCSS  
+
+### Backend  
+- Python  
+- FastAPI  
+- Tesseract OCR  
+- OpenAI gpt-4o-mini  
+
+---
+
+## Development Journey
 
 ### Story 1 — Early Prototype  
 ![Early Prototype](screenshots/story1.jpg)
@@ -109,28 +116,18 @@ npm run dev
 
 ---
 
-## 📅 Future Roadmap  
-- Calendar view  
-- Compare schedule options  
-- PDF export  
-- Save schedules locally  
-- Deploy backend  
-
----
-
-## 📄 License  
+## License
 MIT License
 
 ---
 
-## 👤 Author  
+## Author
 
 **Christopher Mena**  
 AI/ML Engineer  
 GitHub: https://github.com/ChrisDevAI  
 Website: https://ChrisAI.dev  
-LinkedIn: https://linkedin.com/in/ChrisDevAI  
-
+LinkedIn: https://linkedin.com/in/ChrisDevAI
 
 
 
